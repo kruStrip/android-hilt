@@ -6,26 +6,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myapplication.R
-import com.example.myapplication.presentaition.application.MyApplication
 import com.example.myapplication.databinding.FragmentCoursesBinding
 import com.example.myapplication.domain.usecases.courseusecase.GetCoursesUseCase
 import com.example.myapplication.presentaition.ui.adapters.ItemCourseAdapter
 import com.example.myapplication.presentaition.viewmodels.courseviewmodel.GetCourseViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
+@AndroidEntryPoint
 class CoursesFragment : Fragment() {
 
     private var _binding: FragmentCoursesBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: ItemCourseAdapter
-    private val getCourseViewModel: GetCourseViewModel by viewModel<GetCourseViewModel>()
+    private val getCourseViewModel: GetCourseViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

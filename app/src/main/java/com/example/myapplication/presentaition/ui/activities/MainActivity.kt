@@ -28,12 +28,14 @@ import com.example.myapplication.presentaition.viewmodels.userviewmodel.GetUserV
 import com.google.android.material.navigation.NavigationView
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import androidx.activity.viewModels
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 @Suppress("UNREACHABLE_CODE", "DEPRECATION")
 class MainActivity : AppCompatActivity(){
     private lateinit var binding: ActivityMainBinding
-    private val getUserViewModel: GetUserViewModel by viewModel<GetUserViewModel>()
+    private val getUserViewModel: GetUserViewModel by viewModels()
     var menuResId: Int = com.example.myapplication.R.menu.menu
 
     override fun onCreate(savedInstanceState: Bundle?) {

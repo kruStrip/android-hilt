@@ -12,9 +12,10 @@ import com.example.myapplication.databinding.FragmentUserProfileBinding
 import com.example.myapplication.presentaition.ui.fragments.courses.AddCourseFragment
 import com.example.myapplication.presentaition.ui.fragments.courses.CoursesFragment
 import com.example.myapplication.presentaition.viewmodels.userviewmodel.GetUserViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import androidx.fragment.app.viewModels
 
 private const val ARG_PASSWORD_PARAM1 = "ARG_PASSWORD_STRING"
 private const val ARG_USERNAME_PARAM2 ="ARG_USERNAME_STRING"
@@ -22,10 +23,11 @@ private const val ARG_PHONE_NUMBER_PARAM3 = "ARG_PHONE_NUMBER_STRING"
 private const val ARG_AGE_PARAM4 = "ARG_AGE_STRING"
 private const val ARG_PROFILE_PHOTO_PARAM5 = "ARG_PROFILE_PHOTO"
 
+@AndroidEntryPoint
 class MUserProfileFragment : Fragment() {
 
 
-    private val getUserViewModel: GetUserViewModel by viewModel<GetUserViewModel>()
+    private val getUserViewModel: GetUserViewModel by viewModels()
 
     private var param1Password: String? = null
     private var param2Username: String? = null

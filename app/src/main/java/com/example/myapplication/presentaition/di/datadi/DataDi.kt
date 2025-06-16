@@ -1,5 +1,6 @@
 package com.example.myapplication.presentaition.di.datadi
 
+import android.content.Context
 import com.example.myapplication.data.databases.roomdatabase.database.AppRoomDatabase
 import com.example.myapplication.data.databases.roomdatabase.repositories.courserepository.AddCourseRepositoryImpl
 import com.example.myapplication.data.databases.roomdatabase.repositories.courserepository.GetCoursesRepositoryImpl
@@ -23,56 +24,63 @@ import com.example.myapplication.domain.repositories.userrepository.IAddUserRepo
 import com.example.myapplication.domain.repositories.userrepository.ICheckUserRepository
 import com.example.myapplication.domain.repositories.userrepository.IGetLastUserRepository
 import com.example.myapplication.domain.repositories.userrepository.IGetUsersRepository
-import org.koin.dsl.module
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
+@Module
+@InstallIn(SingletonComponent::class)
+object DataDi {
 
-val dataModule = module {
+    @Provides
+    @Singleton
+    fun provideDatabase(@ApplicationContext context: Context): AppRoomDatabase =
+        AppRoomDatabase.getInstance(context)
 
-    single<AppRoomDatabase> {
-        AppRoomDatabase.getInstance(context = get())
-    }
+    @Provides
+    fun provideGetUsersRepository(database: AppRoomDatabase): IGetUsersRepository =
+        GetUsersRepositoryImpl(database)
 
-    single<IGetUsersRepository> {
-        GetUsersRepositoryImpl(database = get())
-    }
+    @Provides
+    fun provideGetLastUserRepository(database: AppRoomDatabase): IGetLastUserRepository =
+        GetLastUserRepositoryImpl(database)
 
-    single<IGetLastUserRepository> {
-        GetLastUserRepositoryImpl(database = get())
-    }
+    @Provides
+    fun provideCheckUserRepository(database: AppRoomDatabase): ICheckUserRepository =
+        CheckUserRepositoryImpl(database)
 
-    single<ICheckUserRepository> {
-        CheckUserRepositoryImpl(database = get())
-    }
+    @Provides
+    fun provideAddUserRepository(database: AppRoomDatabase): IAddUserRepository =
+        AddUserRepositoryImpl(database)
 
-    single<IAddUserRepository> {
-        AddUserRepositoryImpl(database = get())
-    }
+    @Provides
+    fun provideInterUserAccountRepository(database: AppRoomDatabase): IInterUserAccountRepository =
+        InterUserAccountRepositoryImpl(database)
 
-    single<IInterUserAccountRepository>{
-        InterUserAccountRepositoryImpl(database = get())
-    }
+    @Provides
+    fun provideGetCourseRepository(database: AppRoomDatabase): IGetCourseRepository =
+        GetCoursesRepositoryImpl(database)
 
-    single<IGetCourseRepository> {
-        GetCoursesRepositoryImpl(database = get())
-    }
+    @Provides
+    fun provideAddCourseRepository(database: AppRoomDatabase): IAddCourseRepository =
+        AddCourseRepositoryImpl(database)
 
-    single<IAddCourseRepository> {
-        AddCourseRepositoryImpl(database = get())
-    }
+    @Provides
+    fun provideAddStudentRepository(database: AppRoomDatabase): IAddStudentRepository =
+        AddStudentRepositoryImpl(database)
 
-    single< IAddStudentRepository> {
-        AddStudentRepositoryImpl(database = get())
-    }
+    @Provides
+    fun provideGetStudentsRepository(database: AppRoomDatabase): IGetStudentsRepository =
+        GetStudentsRepositoryImpl(database)
 
-    single< IGetStudentsRepository> {
-        GetStudentsRepositoryImpl(database = get())
-    }
+    @Provides
+    fun provideGetTeachersRepository(database: AppRoomDatabase): IGetTeachersRepository =
+        GetTeachersRepositoryImpl(database)
 
-    single<IGetTeachersRepository>{
-        GetTeachersRepositoryImpl(database = get())
-    }
-
-    single<IAddTeacherRepository>{
-        AddTeacherRepositoryImpl(database = get())
-    }
+    @Provides
+    fun provideAddTeacherRepository(database: AppRoomDatabase): IAddTeacherRepository =
+        AddTeacherRepositoryImpl(database)
 }

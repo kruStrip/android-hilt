@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     id("com.google.devtools.ksp")
+    alias(libs.plugins.dagger.hilt.android)
+    alias(libs.plugins.kotlin.kapt)
 }
 
 android {
@@ -63,9 +65,8 @@ dependencies {
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.room:room-ktx:2.6.1")
     implementation("com.github.bumptech.glide:glide:4.14.2")
-    implementation("io.insert-koin:koin-core:3.5.0")
-    implementation("io.insert-koin:koin-android:3.5.0")
-    implementation("io.insert-koin:koin-test:3.5.0")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.compiler)
     implementation("androidx.preference:preference:1.1.1")
 
     implementation("androidx.compose.material:material:1.5.4")

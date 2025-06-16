@@ -15,17 +15,16 @@ import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startForegroundService
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 
 
 import com.example.myapplication.R
-import com.example.myapplication.presentaition.application.MyApplication
 import com.example.myapplication.databinding.FragmentRegistrationBinding
 import com.example.myapplication.domain.models.Course
 import com.example.myapplication.domain.models.User
 import com.example.myapplication.presentaition.viewmodels.userviewmodel.AddUserViewModel
 import com.example.myapplication.presentaition.viewmodels.userviewmodel.UserViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
 /**
@@ -33,14 +32,15 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * Use the [RegistrationFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class RegistrationFragment : Fragment() {
     // TODO: Rename and change types of parameters
 
     private var text: String? = null
     private var _binding: FragmentRegistrationBinding? = null
     private val binding get() = _binding!!
-    private val userViewModel: UserViewModel by viewModel<UserViewModel>()
-    private val addUserViewModel: AddUserViewModel by viewModel<AddUserViewModel>()
+    private val userViewModel: UserViewModel by viewModels()
+    private val addUserViewModel: AddUserViewModel by viewModels()
 
 
 

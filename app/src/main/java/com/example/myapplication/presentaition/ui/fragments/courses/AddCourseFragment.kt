@@ -11,9 +11,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.example.myapplication.R
-import com.example.myapplication.presentaition.application.MyApplication
 import com.example.myapplication.databinding.FragmentAddCourseBinding
 import com.example.myapplication.databinding.FragmentCoursesBinding
 import com.example.myapplication.domain.models.Course
@@ -22,13 +21,14 @@ import com.example.myapplication.presentaition.ui.screens.AddCourseScreen
 import com.example.myapplication.presentaition.ui.screens.LoginScreen
 import com.example.myapplication.presentaition.viewmodels.courseviewmodel.AddCourseViewModel
 import com.example.myapplication.presentaition.viewmodels.userviewmodel.AddUserViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class AddCourseFragment : Fragment() {
 
     private lateinit var composeView: ComposeView
-    private val addCourseViewModel: AddCourseViewModel by viewModel()
+    private val addCourseViewModel: AddCourseViewModel by viewModels()
 
 
     override fun onCreateView(
