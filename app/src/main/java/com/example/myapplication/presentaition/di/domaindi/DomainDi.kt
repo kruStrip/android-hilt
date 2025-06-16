@@ -1,6 +1,16 @@
 package com.example.myapplication.presentaition.di.domaindi
 
+import com.example.myapplication.domain.repositories.authenticationrepository.IInterUserAccountRepository
+import com.example.myapplication.domain.repositories.courserepository.IAddCourseRepository
+import com.example.myapplication.domain.repositories.courserepository.IGetCourseRepository
+import com.example.myapplication.domain.repositories.studentrepository.IAddStudentRepository
+import com.example.myapplication.domain.repositories.studentrepository.IGetStudentsRepository
+import com.example.myapplication.domain.repositories.teacherrepository.IAddTeacherRepository
+import com.example.myapplication.domain.repositories.teacherrepository.IGetTeachersRepository
 import com.example.myapplication.domain.repositories.userrepository.IAddUserRepository
+import com.example.myapplication.domain.repositories.userrepository.ICheckUserRepository
+import com.example.myapplication.domain.repositories.userrepository.IGetLastUserRepository
+import com.example.myapplication.domain.repositories.userrepository.IGetUsersRepository
 import com.example.myapplication.domain.usecases.authenticationusecase.InterUserAccountUseCase
 import com.example.myapplication.domain.usecases.courseusecase.AddCourseUseCase
 import com.example.myapplication.domain.usecases.courseusecase.GetCoursesUseCase
@@ -12,64 +22,56 @@ import com.example.myapplication.domain.usecases.userusecase.AddUserUseCase
 import com.example.myapplication.domain.usecases.userusecase.CheckUserUseCase
 import com.example.myapplication.domain.usecases.userusecase.GetUserUseCase
 import com.example.myapplication.domain.usecases.userusecase.GetUsersUseCase
-import org.koin.dsl.factory
-import org.koin.dsl.module
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-val domainModule = module {
+@Module
+@InstallIn(SingletonComponent::class)
+object DomainDi {
 
-    factory<AddUserUseCase>{
-        AddUserUseCase(addUserRepository = get())
-    }
+    @Provides
+    fun provideAddUserUseCase(addUserRepository: IAddUserRepository): AddUserUseCase =
+        AddUserUseCase(addUserRepository)
 
-    factory<GetUsersUseCase>{
-        GetUsersUseCase(getUsersRepository = get())
-    }
+    @Provides
+    fun provideGetUsersUseCase(getUsersRepository: IGetUsersRepository): GetUsersUseCase =
+        GetUsersUseCase(getUsersRepository)
 
-    factory<GetUserUseCase> {
-        GetUserUseCase(getLastUserRepository = get())
-    }
+    @Provides
+    fun provideGetUserUseCase(getLastUserRepository: IGetLastUserRepository): GetUserUseCase =
+        GetUserUseCase(getLastUserRepository)
 
-    factory<CheckUserUseCase> {
-        CheckUserUseCase(checkUserRepository = get())
-    }
+    @Provides
+    fun provideCheckUserUseCase(checkUserRepository: ICheckUserRepository): CheckUserUseCase =
+        CheckUserUseCase(checkUserRepository)
 
-    factory<InterUserAccountUseCase> {
-        InterUserAccountUseCase(interUserAccountRepository = get())
-    }
+    @Provides
+    fun provideInterUserAccountUseCase(interUserAccountRepository: IInterUserAccountRepository): InterUserAccountUseCase =
+        InterUserAccountUseCase(interUserAccountRepository)
 
-    factory<GetTeachersUseCase>{
-        GetTeachersUseCase(getTeachersRepository = get())
-    }
+    @Provides
+    fun provideGetTeachersUseCase(getTeachersRepository: IGetTeachersRepository): GetTeachersUseCase =
+        GetTeachersUseCase(getTeachersRepository)
 
-    factory<AddTeacherUseCase>{
-        AddTeacherUseCase(addTeacherRepository = get())
-    }
+    @Provides
+    fun provideAddTeacherUseCase(addTeacherRepository: IAddTeacherRepository): AddTeacherUseCase =
+        AddTeacherUseCase(addTeacherRepository)
 
-    factory<GetStudentsUseCase>{
-        GetStudentsUseCase(getStudentsRepository = get())
-    }
+    @Provides
+    fun provideGetStudentsUseCase(getStudentsRepository: IGetStudentsRepository): GetStudentsUseCase =
+        GetStudentsUseCase(getStudentsRepository)
 
-    factory<AddStudentUseCase>{
-        AddStudentUseCase(addStudentRepository = get())
-    }
+    @Provides
+    fun provideAddStudentUseCase(addStudentRepository: IAddStudentRepository): AddStudentUseCase =
+        AddStudentUseCase(addStudentRepository)
 
-    factory<GetCoursesUseCase>{
-        GetCoursesUseCase(getCourseRepository = get())
-    }
+    @Provides
+    fun provideGetCoursesUseCase(getCourseRepository: IGetCourseRepository): GetCoursesUseCase =
+        GetCoursesUseCase(getCourseRepository)
 
-    factory<AddCourseUseCase>{
-        AddCourseUseCase(addCourseRepository = get())
-    }
-
-
-
-
-
-
-
-
-
-
-
-
+    @Provides
+    fun provideAddCourseUseCase(addCourseRepository: IAddCourseRepository): AddCourseUseCase =
+        AddCourseUseCase(addCourseRepository)
 }
