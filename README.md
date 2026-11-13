@@ -1,14 +1,14 @@
 # Android: Hilt
 
-Внедрение зависимостей на Hilt, слои data/domain, работа с сетью через APIClient.
+Внедрение зависимостей на Hilt, слои data/domain и работа с сетью через модуль `api-client`.
 
-**Стек:** Kotlin · Android Studio · Gradle
+**Стек:** Kotlin · Android Studio · Gradle · Hilt · Retrofit
 
 ## Что внутри
 
 - `app/` — приложение
 - `data/`, `domain/` — слои данных и бизнес-логики
-- `APIClient/` — клиент для сетевых запросов
+- `api-client/` — клиент для сетевых запросов
 
 ## Запуск
 
